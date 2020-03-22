@@ -31,7 +31,7 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v1
         with:
-          path: $HOME/.pub-cache
+          path: ${{ HOME }}/.pub-cache
           key: pub-${{ matrix.os }}-${{ matrix.dart-version }}-${{ hashFiles('pubspec.yaml') }}
 
       - name: Installing dependencies
