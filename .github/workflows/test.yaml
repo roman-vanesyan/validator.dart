@@ -32,7 +32,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: $HOME/.pub-cache
-          key: pub-${{ matrix.os }}-${{ hasFiles('pubspec.yaml') }}
+          key: pub-${{ matrix.os }}-${{ hashFiles('pubspec.yaml') }}
 
       - name: Installing dependencies
         run: pub get
