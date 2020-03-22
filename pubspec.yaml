@@ -2,3 +2,5 @@ name: validator
 version: 0.1.0
 license: MIT
 
+dev_dependencies:
+  test: ^1.14.2
