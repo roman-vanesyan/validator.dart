@@ -1,7 +1,6 @@
-const int _eof = -1;
+import '_digit.dart';
 
-@pragma('vm:prefer-inline')
-bool _isDigit(int code) => code >= 0x30 /* 0 */ && code <= 0x39 /* 9 */;
+const int _eof = -1;
 
 /// Checks whether given [value] is an integer number.
 ///
@@ -53,7 +52,7 @@ bool isInt(String value,
     codeUnit = next();
   }
 
-  if (!_isDigit(codeUnit)) {
+  if (!isDigit(codeUnit)) {
     return false;
   }
 
@@ -67,7 +66,7 @@ bool isInt(String value,
     }
   }
 
-  while (_isDigit(codeUnit)) {
+  while (isDigit(codeUnit)) {
     codeUnit = next();
   }
 
