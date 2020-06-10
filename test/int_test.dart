@@ -9,14 +9,15 @@ void main() {
     });
 
     test('it should work with `allowLeadingZero`', () {
-      expect(isInt('0100', allowLeadingZeros: true), isTrue);
-      expect(isInt('0123', allowLeadingZeros: true), isTrue);
-
-      expect(isInt('00123', allowLeadingZeros: true), isTrue);
-      expect(isInt('00', allowLeadingZeros: true), isTrue);
+      expect(isInt('0100', allowLeadingZero: true), isTrue);
+      expect(isInt('0123', allowLeadingZero: true), isTrue);
 
       // Disallow leading zero without `allowLeadingZero` flag enabled.
       expect(isInt('012345'), isFalse);
+
+      // Disallow two leading zeros.
+      expect(isInt('00123', allowLeadingZero: true), isFalse);
+      expect(isInt('00', allowLeadingZero: true), isFalse);
 
       expect(isInt('123.123'), isFalse);
       expect(isInt('asd'), isFalse);
@@ -39,10 +40,9 @@ void main() {
     });
 
     test('it should work with both `allowLeadingZero` and `allowSigned`', () {
+      expect(isInt('-0100', allowSigned: true, allowLeadingZero: true), isTrue);
       expect(
-          isInt('-0100', allowSigned: true, allowLeadingZeros: true), isTrue);
-      expect(
-          isInt('-00123', allowSigned: true, allowLeadingZeros: true), isTrue);
+          isInt('-0123', allowSigned: true, allowLeadingZero: true), isTrue);
     });
   });
 }

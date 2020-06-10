@@ -1,10 +1,9 @@
-final RegExp _regExp = new RegExp(
+final RegExp _regExp = RegExp(
     '[a-z0-9!#\$%&\'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#\$%&\'*+/=?^_`{|}~-]+)*'
     '@'
-    '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?'
-);
+    '(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?');
 
-/// Test whether [value] is valid email.
+/// Checks whether given [value] is valid email.
 ///
 /// ```dart
 /// isEmail('user@example.com'); // => true
