@@ -1,16 +1,30 @@
 import 'package:test/test.dart';
 import 'package:validator/src/ipv6.dart';
 
+import 'testify.dart';
+
 void main() {
   group('isIPv6', () {
     test('it should work', () {
-      expect(isIPv6('::1'), isTrue);
-
-      // Disallow 3 colons.
-      expect(isIPv6(':::1'), isFalse);
-
-      // Wildcard can only be at the beginning of the IP address.
-      expect(isIPv6('::2::1'), isFalse);
+      testify(isIPv6, valid: [
+        '::1',
+        '2001:db8:0000:1:1:1:1:1',
+        '::ffff:127.0.0.1',
+        'fe80::1234%1',
+        'ff08::9abc%10',
+        'ff08::9abc%interface10',
+        'ff02::5678%pvc1.3',
+      ], invalid: [
+        '127.0.0.1',
+        '0.0.0.0',
+        '255.255.255.255',
+        '1.2.3.4',
+        '::ffff:287.0.0.1',
+        '%',
+        'fe80::1234%',
+        'fe80::1234%1%3%4',
+        'fe80%fe80%',
+      ]);
     });
-  }, skip: true);
+  });
 }
